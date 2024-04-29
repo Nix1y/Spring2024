@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">  
+<head>
+<meta charset="ISO-8859-1">
+<title>Products</title>
+</head>
+<body>
+	<h1>Products</h1>
+	<h2>View Products</h2>
+	<table>
+		<tr>
+			<th>PRODUCT NAME</th>
+			<th>PRODUCT PRICE</th>
+		</tr>
+		<tr th:each="p:${products}"> <!-- this is a for each loop and p is the variable here -->
+			<td th:text="${p.name}">
+			<td th:text="${p.price}">
+	</table>
+	
+	<h2>Add a Product</h2>
+	<form action="/Products" method="POST">  <!-- Normal form with action and method=post just like in Struts6 -->
+		Name: <input type="text" name="name"> <br>
+		Price: <input type="number" name="price"> <br>
+		<button type="submit">Add Product</button>
+	</form>
+</body>
+</html>
