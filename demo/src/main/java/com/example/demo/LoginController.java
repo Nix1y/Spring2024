@@ -30,11 +30,9 @@ public class LoginController {
 		//calling login method
 		isLoggedIn = loginProcessor.login();
 		if(isLoggedIn) {
-			model.addAttribute("message","you are now logged In");
+			return "redirect:/home";
 		}
-		else {
-			model.addAttribute("message","Log In Failed!");
-		}
+		model.addAttribute("message","login failed!!");
 		return "login.html";
 	}
 

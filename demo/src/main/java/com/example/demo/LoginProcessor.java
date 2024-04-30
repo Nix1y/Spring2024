@@ -3,20 +3,32 @@ package com.example.demo;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 
-@Component
 
+@Component
+@RequestScope
 public class LoginProcessor {
+	private final LogUserManagementService logUserService;
 	private String username;
 	private String password;
+	
+	public LoginProcessor( LogUserManagementService logUserService) {
+		this.logUserService = logUserService;
+		
+	}
 	public boolean login() {
 		String username = this.getUsername();
 		String password = this.getPassword();
+		
+		boolean loginResult = false;
 		if("katty".equals(username)&& "pass".equals(password)) {
-			return true;
+			
+			loginResult = true;
+			logUserService.setUsername(username);
 		}
 		else {
-			return false;
+			loginResult = false;
 		}
+		return loginResult;
 		
 	}
 	public String getUsername() {
@@ -30,6 +42,9 @@ public class LoginProcessor {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public LogUserManagementService getLogUserService() {
+		return logUserService;
 	}
 	
 }
